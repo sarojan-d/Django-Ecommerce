@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load catalog_extras %}
+
+{% block cartdetail %}
+<h4> Following are the products in your cart: </h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td> <img src="{{item.product.photo.url}}" alt="" style="width: 50px; height: auto;">  </td>
+                        <td>{{item.product.name}} </td>
+                        <td> Rs. {{item.product.price}} </td>
+                        <td>x{{item.quantity}} </td>
+                        <td>Rs. {{item|getProductTotal }}</td>
+                        <td> <a href="/cart/edit/{{item.id}}"> Edit</a> </td>
+                        <td> <a href="/cart/delete/{{item.id}}"> Delete</a> </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4">Total Payable Amount: (Rs.)</th>
+                        <th>{{items|getPayable}} </th>
+                    </tr>
+                    <tr>
+                        <th colspan="6"></th>
+                        <th ><a href="/checkout/" class="btn btn-danger">Checkout</a></th>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

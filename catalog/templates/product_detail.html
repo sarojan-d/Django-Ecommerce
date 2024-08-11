@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block detail %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{product.photo.url}}" alt="{{product.name}}" style="width: 50%; height:50%; text-align: center  ;" >
+        </div>
+        <div class="col-md-8">
+            <p class="h4">{{product.name}} </p>
+            <p style="color:darkorchid"> Rs. {{product.price}} </p>
+
+            <form method="post" action="/add/to/cart/{{product.id}}/">
+                {% csrf_token %}
+                <input type="number" name="quantity" id="quantity" placeholder="Add quantity" value="1">
+                <input type="submit" class="btn btn-success" value="Add to Cart">
+            </form>
+
+
+        </div>
+            
+
+            
+
+    </div>
+
+</div>
+
+
+{% endblock %}

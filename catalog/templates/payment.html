@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block paymentblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h4> Payable amount: Rs.{{shop_order.total_amount}} </h4>
+            <form method="post">
+                {% csrf_token %}
+                <select class="payment-select" aria-label="Default select example" name="payment_mode">
+                    <option value="" disabled selected hidden>Select Payment Method</option>
+                    <option value="0">Cash On Delivery</option>
+                    <option value="1">e-sewa</option>
+                    <option value="2">khalti</option>
+                </select>
+                <input type="number" name="paid_amount" id="paid_amount">
+                <input type="submit" class="btn btn-primary" value="pay now">
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

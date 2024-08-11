@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+      
+{% block addressblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {% if delivery_address %}
+            <h4> Your order will be delivered to: </h4>
+            <p>{{delivery_address.0.address}}</p>
+            <a href="/place/order/{{shop_order.id}}/">Place Order</a>
+            {% else %}
+            <form method="POST">
+                {% csrf_token %}
+                <textarea name="address" id="address"></textarea>
+                <input type="submit" class="btn btn-success" value="Place order">
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}  

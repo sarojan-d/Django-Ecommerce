@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load catalog_extras %}
+    
+{% block dashboard %}
+
+<h4> Orders Received: </h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    {% for item in orders %}
+                    <tr>
+                        <td>{{item.user.username}} </td>
+                        <td>{{item.address.address}} </td>
+                        <td> Rs. {{item.total_amount}} </td>
+                        <td> Rs. {{item.paid_amount}} </td>
+                        <td>{{item.payment_mode|get_payment_method }} </td>
+                        <td>{{item.delivery_status|get_delivery_status }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+    
